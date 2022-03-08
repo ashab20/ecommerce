@@ -1,10 +1,12 @@
 const express = require('express');
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');
-const Error =  require('./middleWare/error')
+const Error =  require('./middleWare/error');
+const CookieParser = require('cookie-parser');
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
+app.use(CookieParser());
 
 //? product routes
 app.use('/api',productRouter);

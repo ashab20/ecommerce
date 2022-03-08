@@ -2,9 +2,11 @@ const Product = require('../modleSchema/productSchema');
 const ErrorHandler = require('../utils/errorHandler');
 const asyncFunc = require('../middleWare/asyncFunc.js');
 const ApiFeature = require('../utils/apiFeature');
-
+const User = require('../modleSchema/userSchema');
+const JWT = require('jsonwebtoken');
 // ? Admin Create Product
 exports.createProduct = asyncFunc(async(req,res, next) => {
+    req.body.user = req.user.id
     const products =  await Product.create(req.body);
     res.status(200).json({
         success:true,

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./userSchema');
 
 
 const productSchema = new mongoose.Schema({
@@ -58,6 +59,11 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required:[true,"cannot find user"],
+        },
     createAt:{
         type:Date,
         default:Date.now,

@@ -16,7 +16,7 @@ exports.CreateUser = asyncFunc(async(req,res,next) => {
 
     const verifyUser = await User.findOne({email,username});
     
-    const hashPassword = CryptoJS.AES.encrypt(req.body.password, `${process.env.HASHMESSAGE}`)
+    const hashPassword = CryptoJS.AES.encrypt(req.body.password, `${process.env.HASHMESSAGE}`);
 
     console.log(hashPassword)
     
@@ -35,7 +35,7 @@ exports.CreateUser = asyncFunc(async(req,res,next) => {
     const genToken = JWT.sign({id:user._id},process.env.JWT_SECRET, {
         expiresIn:process.env.JWT_EXPIRE});
     
-    const {password,...other} = user._doc;
+    const {password,...profile} = user._doc;
 
     const options ={
         expires:new Date(
@@ -44,7 +44,7 @@ exports.CreateUser = asyncFunc(async(req,res,next) => {
     }
         res.status(201).cookie('token',genToken,options).json({
             success:true,
-            other,
+            profile,
             genToken
         });
     } else{
@@ -53,34 +53,55 @@ exports.CreateUser = asyncFunc(async(req,res,next) => {
 });
 
 
+// get user details
+exports.getUser = asyncFunc( async(req,res) => {
+    const user = await User.findById(req.user.id);
+    const {password,...profile} = user._doc;
+    res.status(200).json({
+        success:true,
+        profile,
+    })
+})
+
+
 //* Update user information
-
 exports.UpdateUser= asyncFunc(async (req,res,next) => {
-    const {name,username,email,password} = req.body;
 
-    const verifyUser = await User.findOne({email,username});
-    
-    // const hashPassword = cryptoJS.AES.encrypt(process.env.HASHMESSAGE,req.body.password);
-
-    const hashPassword = CryptoJS.AES.decrypt(verifyUser.password, `${process.env.HASHMESSAGE}`)
-
-
-    if(verifyUser){
-        if(password === hashPassword.toString(cryptoJs.enc.Utf8)){        
-        const user = await User.findOneAndUpdate({
-            name,
-            username,
-            email});
+    const {name,username,email} = req.body;
+    await User.findOneAndUpdate(req.user.id,
+        {name,username,email},
+        {new:true,runValidators:true,useFindAndModify:false});
 
         res.status(201).json({
-            success:true,user
+            success:true,
         })
-    }
-    }else{
-        res.status(501).json({success:false, message:`email or username did not matched`})
-    }
 });
 
+// change password
+exports.changePassword = asyncFunc(async (req,res,next) => {
+
+    const user = await User.findById(req.user.id);
+    if((req.body.oldPassword && req.body.newPassword && req.body.confirmPassword) ===""){
+        return next(new ErrorHandler("Please input your password",400));
+    }
+    let oldPassword = CryptoJS.AES.decrypt(user.password,`${process.env.HASHMESSAGE}`)
+    oldPassword = oldPassword.toString(cryptoJs.enc.Utf8);
+    
+    if(req.body.oldPassword !== oldPassword){ 
+        return next(new ErrorHandler("Icorrect Password!, Please try again",400));
+    }
+    if(req.body.newPassword !== req.body.confirmPassword){
+            return next(new ErrorHandler("Password did not matched!, Please enter currect password",400));
+    }
+
+    const hashPassword = CryptoJS.AES.encrypt(req.body.newPassword, `${process.env.HASHMESSAGE}`);
+
+    user.password = hashPassword;
+    await user.save();
+    sendToken(user.id,201,res);
+    
+    
+})
 
 //* forget update password
 exports.forgetPassword = asyncFunc( async (req,res,next) => {
@@ -118,12 +139,6 @@ exports.forgetPassword = asyncFunc( async (req,res,next) => {
     return next(new ErrorHandler(error.message,401));
 
     }
-        // await user.updateOne({
-        //     password:CryptoJS.AES.encrypt(req.body.password, `${process.env.HASHMESSAGE}`)})
-
-        // res.status(201).json({
-        //     success:true,message:"Password successfully updated"
-        // });
 })
 
 // reset password
@@ -152,7 +167,7 @@ exports.loginUser = asyncFunc( async(req,res,next) => {
         return next(new ErrorHandler("Please enter email or username and password",400)); }
 
         const user = await User.findOne({email}) || await User.findOne({username});
-        if(!user) return next(new ErrorHandler('Sothing goes wrong with username or password! or try registration first',401));
+        if(!user) return next(new ErrorHandler('Something goes wrong with username or password! or try registration first',401));
 
         
         let hashPassword = CryptoJS.AES.decrypt(user.password,`${process.env.HASHMESSAGE}`)
@@ -162,7 +177,7 @@ exports.loginUser = asyncFunc( async(req,res,next) => {
         if(password === hashPassword){
             sendToken(user.id,201,res);
         }else{
-            return next(new ErrorHandler("Password did not matched!, Please enter currect password"))
+            return next(new ErrorHandler("'Something goes wrong with username or password!, Please input currect user or password"))
         };
 
     }
@@ -173,4 +188,33 @@ exports.logOut = asyncFunc(async (req,res,next) => {
     res.cookie('token',null,{expires:new Date(Date.now()),httpOnly:true});
 
     res.status(200).json({success:true,message:"Logget out"});
+});
+
+
+
+// ! Get all user by Admin
+exports.allUsers = asyncFunc(async (req,res,next) => {
+    const users = User.find();
+    // const {password, ...people} = users._doc;
+
+    res.status(200).json({
+        success:true,
+        users,
+    })
+})
+
+
+// ! Get Single user by Admin
+exports.oneUser = asyncFunc(async (req,res,next) => {
+    const user = User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHandler(`User does not exist with id: ${req.params.id}`,400))
+    }
+    // const {password, ...people} = user._doc;
+
+    res.status(200).json({
+        success:true,
+        user,
+    })
 })

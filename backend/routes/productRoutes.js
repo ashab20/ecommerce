@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllProduct, createProduct, updateProductById, deleteProduct, getOneProduct } = require('../controller/productsControllers');
+const { getAllProduct, createProduct, updateProductById, deleteProduct, getOneProduct, createReview, allReviews, deleteReviews } = require('../controller/productsControllers');
 const { isAuthentication, authorizeRoles } = require('../middleWare/authentication');
 const routes = express.Router();
 
@@ -39,6 +39,13 @@ routes.route('/admin/product/update/:id').put(isAuthentication,authorizeRoles('a
 // ? *********** DELETE Methods ************
 // ! Admin Delete a product
 routes.route('/admin/product/:id').delete(isAuthentication, authorizeRoles('admin'),deleteProduct);
+
+
+// ? create review
+routes.route('/review').put(isAuthentication, createReview);
+
+// ? get all reviews
+routes.route('/reviews').get(allReviews).delete(deleteReviews);
 
 
 module.exports = routes;

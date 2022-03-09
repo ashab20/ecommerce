@@ -17,8 +17,6 @@ exports.CreateUser = asyncFunc(async(req,res,next) => {
     const verifyUser = await User.findOne({email,username});
     
     const hashPassword = CryptoJS.AES.encrypt(req.body.password, `${process.env.HASHMESSAGE}`);
-
-    console.log(hashPassword)
     
     if(!verifyUser){
         const user = await User.create({
@@ -65,15 +63,16 @@ exports.getUser = asyncFunc( async(req,res) => {
 
 
 //* Update user information
-exports.UpdateUser= asyncFunc(async (req,res,next) => {
+exports.updateProfile= asyncFunc(async (req,res,next) => {
 
     const {name,username,email} = req.body;
-    await User.findOneAndUpdate(req.user.id,
+    const user = await User.findByIdAndUpdate(req.user.id,
         {name,username,email},
-        {new:true,runValidators:true,useFindAndModify:false});
+        {new:true,runValidators:true,useFindAndModify:false}).select("-password");
 
         res.status(201).json({
             success:true,
+            user,
         })
 });
 
@@ -194,8 +193,7 @@ exports.logOut = asyncFunc(async (req,res,next) => {
 
 // ! Get all user by Admin
 exports.allUsers = asyncFunc(async (req,res,next) => {
-    const users = await User.find();
-    // const {password, ...people} = users._doc;
+    const users = await User.find().select("-password");
 
     res.status(200).json({
         success:true,
@@ -206,15 +204,40 @@ exports.allUsers = asyncFunc(async (req,res,next) => {
 
 // ! Get Single user by Admin
 exports.oneUser = asyncFunc(async (req,res,next) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).select("-password");
 
     if(!user){
         return next(new ErrorHandler(`User does not exist with id: ${req.params.id}`,400))
     }
-    // const {password, ...people} = user._doc;
 
     res.status(200).json({
         success:true,
         user,
     })
-})
+});
+
+// ! Delete a User
+exports.deleteUser = asyncFunc(async (req,res,next) => {
+    const user = await User.deleteOne({_id:req.params.id});
+
+    if(!user){
+        next(new ErrorHandler(`User not found`,400));
+    }
+
+    res.status(201).json({success:true,message:`User has beeen deleted`});
+    
+});
+
+// ! Update a User @Admin
+//* Update user information
+exports.updateUser= asyncFunc(async (req,res,next) => {
+
+    const {name,username,email,role} = req.body;
+    await User.findByIdAndUpdate(req.user.id,
+        {name,username,email,role},
+        {new:true,runValidators:true,useFindAndModify:false});
+
+        res.status(201).json({
+            success:true,
+        })
+});

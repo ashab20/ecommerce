@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('./userSchema');
 
 
 const productSchema = new mongoose.Schema({
@@ -16,7 +15,7 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: [true,'Give the price of product']
     },
-    rating:{
+    ratings:{
         type:Number,
         default:0,
     },
@@ -43,8 +42,13 @@ const productSchema = new mongoose.Schema({
         type:Number,
         default:0,
     },
-    review:[
+    reviews:[
         {
+            user:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+                required:[true,"cannot find user"],
+            },
             name:{
                 type:String,
                 require:true,

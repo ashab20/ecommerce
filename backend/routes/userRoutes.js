@@ -6,20 +6,11 @@ const {
     resetpassword,
     getUser,
     changePassword,
-    UpdateUser, 
-    allUsers,
-    oneUser
+    updateProfile, 
 } = require("../controller/userControllers");
-const { isAuthentication, authorizeRoles } = require('../middleWare/authentication');
+const { isAuthentication } = require('../middleWare/authentication');
 const express = require('express');
 const router = express.Router();
-
-// ! Admin get all users
-router.route('/admin/users').get(isAuthentication,authorizeRoles("admin"), allUsers);
-
-// ! Admin get all users
-router.route('/admin/user/:id').get(isAuthentication,authorizeRoles("admin"), oneUser);
-
 
 // create a user
 router.route('/registration').post(CreateUser);
@@ -31,7 +22,7 @@ router.route('/login').post(loginUser);
 router.route('/profile').get(isAuthentication,getUser);
 
 // update user
-router.route('/update').put(isAuthentication,UpdateUser);
+router.route('/update').put(isAuthentication,updateProfile);
 
 // change password
 router.route('/changepassword').put(isAuthentication,changePassword)

@@ -4,6 +4,7 @@ const asyncFunc = require('../middleWare/asyncFunc.js');
 const ApiFeature = require('../utils/apiFeature');
 const User = require('../modleSchema/userSchema');
 const JWT = require('jsonwebtoken');
+
 // ? Admin Create Product
 exports.createProduct = asyncFunc(async(req,res, next) => {
     req.body.user = req.user.id
@@ -54,4 +55,83 @@ exports.getOneProduct = asyncFunc(async(req,res,next) => {
     const product = await Product.findById(req.params.id);
     if(!product) return next(new ErrorHandler('Cannot find this product',404))
     res.status(200).json({success: true, product,ProductCount});
+});
+
+exports.getReview = asyncFunc(async (req,res,next) => {
+    
+});
+
+
+// ! ********* REVIEWS **********
+
+// create product review @USER
+exports.createReview = asyncFunc( async (req,res,next) => {
+    const { _id ,name} = req.user;
+    const { rating, comment, ProductId } = req.body;
+    const review = {
+        user:_id,name,rating: Number(rating),comment
+    }
+
+    const product = await Product.findById(ProductId);
+    const isReviewed = product.reviews.find( rev=> rev.user.toString()=== _id.toString());
+
+    if(isReviewed){
+        product.reviews.forEach((rev) => {
+            if(rev.user.toString()=== _id.toString())
+            (rev.rating = rating),(rev.comment = comment);
+        });
+    }else{
+        product.reviews.push(review);
+        product.numOfReviws = product.reviews.length
+    }
+
+    let count = 0;
+
+    product.reviews.forEach((rev) => {
+        count += rev.rating;
+    });
+    
+    product.ratings = count / product.reviews.length;
+
+    await product.save({validateBeforeSave:false});
+    res.status(200).json({
+        success:true
+    })
+});
+
+//? get all reviews
+exports.allReviews = asyncFunc(async (req,res,next) => {
+    const product = await Product.findById(req.query.id);
+
+    if(!product){
+        next(new ErrorHandler(`Product not found`,404));
+    }
+
+    res.status(200).json({success:true,reviews :product.reviews})
 })
+
+//? Delete reviews
+
+
+exports.deleteReviews = asyncFunc(async (req,res,next) => {
+    const product = await Product.findById(req.query.ProductId);
+
+    if(!product){
+        next(new ErrorHandler(`Product not found`,404));
+    }
+    const reviews = product.reviews.filter(rev=> rev._id.toString() !== req.query.id.toString())
+    
+    let count = 0;
+    reviews.forEach((rev) => {
+        count += rev.rating;
+    });
+    
+    const ratings = count / reviews.length;
+    const numOfReviws = reviews.length;
+
+    await Product.findByIdAndUpdate(req.query.ProductId,
+        {reviews,ratings,numOfReviws},
+        {new:true,runValidators:true,useFindAndModify:false});
+
+    res.status(200).json({success:true,reviews})
+});

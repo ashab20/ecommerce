@@ -194,7 +194,7 @@ exports.logOut = asyncFunc(async (req,res,next) => {
 
 // ! Get all user by Admin
 exports.allUsers = asyncFunc(async (req,res,next) => {
-    const users = User.find();
+    const users = await User.find();
     // const {password, ...people} = users._doc;
 
     res.status(200).json({
@@ -206,7 +206,7 @@ exports.allUsers = asyncFunc(async (req,res,next) => {
 
 // ! Get Single user by Admin
 exports.oneUser = asyncFunc(async (req,res,next) => {
-    const user = User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
 
     if(!user){
         return next(new ErrorHandler(`User does not exist with id: ${req.params.id}`,400))

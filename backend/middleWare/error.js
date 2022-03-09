@@ -10,6 +10,7 @@ module.exports = (err,req,res,next) => {
         const message = `Resource Not found! Invalid Path: ${err.path}`
         err = new ErrorHandler(message,400)
     }
+    
     // duplicate error
     if(err.code === 11000){
          const message = `Duplicate ${Object.keys(err.keyValue)} Entered!`

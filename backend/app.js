@@ -1,6 +1,7 @@
 const express = require('express');
-const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');
+const productRouter = require('./routes/productRoutes');
+const orderRouter = require('./routes/orderRouters');
 const Error =  require('./middleWare/error');
 const CookieParser = require('cookie-parser');
 const adminRouter = require('./routes/adminRoutes');
@@ -17,6 +18,9 @@ app.use('/user',userRouter);
 
 // ! Admin Routes
 app.use('/admin',adminRouter);
+
+// ! New Order
+app.use('/data', orderRouter);
 
 // ! ErrorHander
 app.use(Error);

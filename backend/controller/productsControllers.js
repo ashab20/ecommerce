@@ -44,17 +44,17 @@ exports.deleteProduct = asyncFunc(async(req,res,next) => {
 //* get all prouct
 exports.getAllProduct = asyncFunc(async(req,res,next) => {
     const resultPerPage = 5;
-    const ProductCount = Product.countDocuments();
+    const ProductCount = await Product.countDocuments();
     const apiFeature = new ApiFeature(Product.find(),req.query).search().filter().pagination(resultPerPage);
     const product = await apiFeature.query;
-    res.status(200).json({success: true, product});
+    res.status(200).json({success: true,ProductCount, product});
 })
 
 // get one product by id
 exports.getOneProduct = asyncFunc(async(req,res,next) => {
     const product = await Product.findById(req.params.id);
     if(!product) return next(new ErrorHandler('Cannot find this product',404))
-    res.status(200).json({success: true, product,ProductCount});
+    res.status(200).json({success: true, product});
 });
 
 exports.getReview = asyncFunc(async (req,res,next) => {

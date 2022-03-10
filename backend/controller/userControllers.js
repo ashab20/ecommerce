@@ -194,9 +194,11 @@ exports.logOut = asyncFunc(async (req,res,next) => {
 // ! Get all user by Admin
 exports.allUsers = asyncFunc(async (req,res,next) => {
     const users = await User.find().select("-password");
+    const userCount = await User.countDocuments();
 
     res.status(200).json({
         success:true,
+        userCount,
         users,
     })
 })

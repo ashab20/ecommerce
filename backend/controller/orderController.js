@@ -89,12 +89,10 @@ exports.updateOrderData = asyncFunc(async (req,res,next) => {
     if(order.orderStatus ==="Delivered"){
         return next(new ErrorHandler(`You have already delivered this order`,400))
     }
-    console.log(await order.orderItems.quantity)
-   await order.orderItems.forEach(async order=>{
+await order.orderItems.forEach(async order=>{
             await updateStocke(order.product,order.quantity)
         });
 
-    console.log(req.body.status);
     order.orderStatus = req.body.status;
         
     if(order.orderStatus ==="Delivered"){

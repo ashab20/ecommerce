@@ -14,17 +14,7 @@ const transporter = nodeMailer.createTransport({
         }
     })
 
-/*
-const transporter = nodeMailer.createTransport({
-        host:"smpt.gmail.com" ,
-        port:465,
-        service:"smpshufy@gmail.com",
-        auth:{
-            user:"ashab8960",
-            pass:"gmail"
-        }
-    })
-*/
+
     const mailOPtions = {
         from: process.env.SMPT_MAIL,
         to:options.email,

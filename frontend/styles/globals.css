@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:wght@100;400&family=Poppins&family=Roboto&display=swap');
+
+
+@layer base {
+  html,body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font:10px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+}
+
+@layer components {
+  .MenuItem {
+    @apply font-Poppins pt-0.5 pb-0.5 pl-2 pr-2 text-[.8rem] font-[400] text-gray-800 rounded-sm hover:text-gray-600  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300
+  }
+  .userIcon{
+    @apply text-[1.2rem] h-5 pt-0.5 pb-0.5 ml-2 mr-2 mt-2 text-gray-600 cursor-pointer
+  }
+  .mobileLink{
+    @apply m-3 text-[.852rem] cursor-pointer border-dotted border-b-2 border-indigo-400 font-Montserrat font-[400] hover:rounded-md hover:text-gray-600 
+    transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:border-0
+  }
+  .socialIcon{
+    @apply mr-2.5 text-[.852rem] cursor-pointer  font-[400]
+  }
+}
+

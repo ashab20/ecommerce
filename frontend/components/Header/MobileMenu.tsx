@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const MobileMenu = () => {
   return (
-    <div className="absolute bg-[#f7f7f7] right-0 w-[50%] h-[100vh] pl-[6%] text-gray-600 font-Poppins font-thin pt-2 transition ease-in-out delay-150">
+    <div className="absolute bg-[#f7f7f7] right-0 w-[50%] h-[100vh] pl-[6%] text-gray-600 font-Poppins font-thin pt-2 transition ease-in-out delay-150 z-10">
         <div>
             <h4 className="ml-3 mt-10 flex">
                 <CgMenuGridR className='text-sm mt-1 mr-1'/> Menu

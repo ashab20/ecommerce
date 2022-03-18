@@ -14,7 +14,7 @@ const UserMenu = ({}) => {
 
     const isMobile  = useMediaQuery({maxWidth:SCREEN.sm});
   return (<>
-    <div className='text-[.5rem] h-10 flex justify-end z-10'>
+    <div className='text-[.5rem] h-10 flex justify-end z-20'>
         <CgSearch className='userIcon'/>
         <div>
         <span className=' absolute pl-4 pt-3.5 text-red-700 z-10 text-[.6rem]'>5

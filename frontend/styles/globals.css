@@ -30,7 +30,7 @@ a {
     @apply font-Poppins pt-0.5 pb-0.5 pl-2 pr-2 text-[.8rem] font-[400] text-gray-800 rounded-sm hover:text-gray-600  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300
   }
   .userIcon{
-    @apply text-[1.2rem] h-5 pt-0.5 pb-0.5 ml-2 mr-2 mt-2 text-gray-600 cursor-pointer
+    @apply text-[1.2rem] h-5 pt-0.5 pb-0.5 ml-2 mr-2 mt-2 text-gray-600 cursor-pointer 
   }
   .mobileLink{
     @apply m-3 text-[.852rem] cursor-pointer border-dotted border-b-2 border-indigo-400 font-Montserrat font-[400] hover:rounded-md hover:text-gray-600 

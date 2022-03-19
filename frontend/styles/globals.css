@@ -39,5 +39,12 @@ a {
   .socialIcon{
     @apply mr-2.5 text-[.852rem] cursor-pointer  font-[400]
   }
+  .footerLink{
+    @apply font-Poppins pt-0.5 pb-0.5 text-[.8rem] font-[400] text-gray-200 hover:underline
+  }
+  .footerTitle{
+    @apply text-gray-300 justify-center font-semibold text-[.8rem] items-center uppercase
+  }
+
 }
 

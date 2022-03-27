@@ -1,11 +1,21 @@
 import type { NextPage } from "next";
-import Meta from "../components/Meta";
+import Meta from "../src/components/Meta";
+import Slider from "../src/components/Slider";
+import BestSell from '../src/components/BestSell';
+import ProductGalary from "../src/components/ProductGalary/indext";
+import Proccess from "../src/components/Process";
+import Delivary from "../src/components/Delivary";
+
 const Home: NextPage = () => {
+
   return (
     <>
       <Meta title="Home Page" keyword="Home Page, Online shop" description="Choich your favurite product" />
-      <section className="text-red-500">
-        <h1>this is main</h1>
+      <section className="">
+        <Slider />
+        <BestSell/>    
+        <ProductGalary/>
+        <Proccess />
       </section>
     </>
   );

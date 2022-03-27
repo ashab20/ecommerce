@@ -6,9 +6,12 @@ const Error =  require('./middleWare/error');
 const CookieParser = require('cookie-parser');
 const adminRouter = require('./routes/adminRoutes');
 const app = express();
+const bodyParser = require("body-parser");
 
 app.use(express.json());
 app.use(CookieParser());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 //? product routes
 app.use('/api',productRouter);

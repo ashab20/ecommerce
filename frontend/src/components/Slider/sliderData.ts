@@ -1,0 +1,42 @@
+export const data = [
+  {
+    Image: "/product/shoes.jpeg",
+    title: "Red Shoes",
+    description: "This is 100%  minareal daily water withe very good quality",
+    ButtonText: "Shop Now",
+    Color: "to-[#cd351e] from-[#c12a10]",
+    text: "#111",
+  },
+  {
+    Image: "/product/accessories.webp",
+    title: "New Youth got this",
+    description: "New Yougth got this item for servive",
+    ButtonText: "Shop Now",
+    Color: "from-[#e9dac6] to-yellow-300",
+    text: "#111",
+  },
+  {
+    Image: "/product/watch.webp",
+    title: "Watch",
+    description: "brand new Watched with best quality ",
+    ButtonText: "Shop Now",
+    Color: "to-[#386acd] from-sky-600",
+    text: "#111",
+  },
+  {
+    Image: "/product/sheoBelt.jpg",
+    title: "Shoes Belt",
+    description: "shoes and belt with animals lether",
+    ButtonText: "Shop Now",
+    Color: "from-[#131315] to-gray-700",
+    text: "text-white",
+  },
+  {
+    Image: "/product/iphone.jpg",
+    title: "Iphone 13 Pro max",
+    description: "This is 100%  minareal daily water",
+    ButtonText: "Buy Now",
+    Color: "from-[#f1f1f1] to-[#f1f1f1]",
+    text: "text-black",
+  },
+];

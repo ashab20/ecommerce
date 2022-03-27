@@ -7,7 +7,7 @@ const routes = express.Router();
 // ? *********** Get Methods ************
 
 //* get all product 
-routes.route('/products').get(isAuthentication,getAllProduct);
+routes.route('/products').get(getAllProduct);
 
 //* get all product 
 // ! admin

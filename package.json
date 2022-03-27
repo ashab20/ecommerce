@@ -11,7 +11,7 @@
     "build": "nodemon backend/server.js"
   },
   "dependencies": {
-    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.2",
     "cookie-parser": "^1.4.6",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.0",

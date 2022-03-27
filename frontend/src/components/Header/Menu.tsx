@@ -3,24 +3,24 @@ import Link from "next/link";
 
 const Menu = () => {
   return (
-    <ul className="flex mt-2 justify-center">
+    <ul className="flex mt-2 justify-center text-center items-center">
       <li className="MenuItem">
-        <Link href="/"> New</Link>
+        <Link href="/"><a>New</a></Link>
       </li>
       <li className="MenuItem">
-        <Link href="/about"> Best</Link>
+        <Link href="/about"><a>Best</a></Link>
       </li>
       <li className="MenuItem">
-        <Link href="/about"> Man</Link>
+        <Link href="/about"><a>Man</a></Link>
       </li>
       <li className="MenuItem">
-        <Link href="/about"> Woman</Link>
+        <Link href="/about"><a>Woman</a></Link>
       </li>
       <li className="MenuItem">
-        <Link href="/about">Kids </Link>
+        <Link href="/about"><a>Kids</a></Link>
       </li>
       <li className="MenuItem">
-        <Link href="/about"> Login</Link>
+        <Link href="/about"><a>Login</a></Link>
       </li>
     </ul>
   );

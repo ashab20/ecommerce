@@ -47,7 +47,7 @@ exports.getAllProduct = asyncFunc(async(req,res,next) => {
     const ProductCount = await Product.countDocuments();
     const apiFeature = new ApiFeature(Product.find(),req.query).search().filter().pagination(resultPerPage);
     const product = await apiFeature.query;
-    res.status(200).json({success: true,ProductCount, product});
+    res.status(200).json({success: true, product,ProductCount});
 })
 
 // get one product by id

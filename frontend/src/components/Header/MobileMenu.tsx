@@ -4,10 +4,10 @@ import Link from "next/link"
 
 const MobileMenu = () => {
   return (
-    <div className="absolute bg-[#f7f7f7] right-0 w-[50%] h-[100vh] pl-[6%] text-gray-600 font-Poppins font-thin pt-2 transition ease-in-out delay-150 z-10">
+    <div className="absolute bg-[#f7f7f7] right-0 top-0 w-2/3 h-[100vh] text-gray-600 font-Poppins font-normal text-2xl pt-5 transition ease-in-out delay-150 z-10 p-6">
         <div>
-            <h4 className="ml-3 mt-10 flex">
-                <CgMenuGridR className='text-sm mt-1 mr-1'/> Menu
+            <h4 className="ml-3 mt-10 flex text-2xl">
+                <CgMenuGridR className='mt-1 mr-1'/> Menu
             </h4>
         </div>
         <ul className="pt-10 ">
@@ -44,29 +44,33 @@ const MobileMenu = () => {
             <span className="mobileLink">Registration </span>
         </Link>
         </div>
+    
+    {/* mobile menu Social Icon */}
 
-        <div className="absolute bottom-4 text-[.7rem] pl-3">
-            <div className="flex mb-[10%]">
+        <div className="absolute bottom-4 text-base pl-3">
+            <div className="flex">
                 <Link href="/" passHref>
-                    <span className='socialIcon'>
-                        <CgFacebook/> </span>
+                    <a className='socialIcon'>
+                        <CgFacebook/> 
+                    </a>
                 </Link>
                 <Link href='#' passHref >
-                    <span className='socialIcon'>
+                    <a className='socialIcon'>
                     <CgTwitter />
-                    </span>
+                    </a>
                 </Link>
                 <Link href='#' passHref >
-                    <span className='socialIcon'>
+                    <a className='socialIcon'>
                     <CgInstagram />
-                    </span>
+                    </a>
                 </Link>
                 <Link href='#' passHref >
-                    <span className='socialIcon'>
+                    <a className='socialIcon'>
                     <FaPinterestSquare />
-                    </span>
+                    </a>
                 </Link>
             </div>
+            {/* mobile menu down copyright */}
             <div>
                 copyright &copy; {Date().substring(11,15)}  <br />
                 <h4>Ecommerce Website by <span className="border-dotted border-b-2 border-gray-400"> ASHAB UDDIN</span></h4>

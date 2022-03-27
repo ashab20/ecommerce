@@ -1,7 +1,7 @@
 
  export const SCREEN = {
     // for mobile responsive
-    sm:'640px',
+    sm:'540px',
     // for tabler responsive
     md:'768px',
     // for laptop display

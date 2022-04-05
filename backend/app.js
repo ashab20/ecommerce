@@ -7,11 +7,13 @@ const CookieParser = require('cookie-parser');
 const adminRouter = require('./routes/adminRoutes');
 const app = express();
 const bodyParser = require("body-parser");
+const cors =require("cors")
 
 app.use(express.json());
 app.use(CookieParser());
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:false}));
+// app.use(bodyParser.json());
+app.use(cors());
 
 //? product routes
 app.use('/api',productRouter);

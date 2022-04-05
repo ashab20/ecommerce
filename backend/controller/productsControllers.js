@@ -43,7 +43,7 @@ exports.deleteProduct = asyncFunc(async(req,res,next) => {
 
 //* get all prouct
 exports.getAllProduct = asyncFunc(async(req,res,next) => {
-    const resultPerPage = 5;
+    const resultPerPage = 8;
     const ProductCount = await Product.countDocuments();
     const apiFeature = new ApiFeature(Product.find(),req.query).search().filter().pagination(resultPerPage);
     const product = await apiFeature.query;

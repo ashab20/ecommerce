@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Slider/color.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Slider/color.jsx", "src/redux/constants/productConstants.js", "src/redux/store.js", "src/redux/actions/productAction.js"],
   "exclude": ["node_modules"]
 }

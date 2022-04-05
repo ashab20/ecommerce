@@ -29,7 +29,7 @@ const PORT = process.env.PORT;
 // server connection
 const server = app.listen(PORT,() => {
     DatabaseConnection();
-    console.log(`Server connected to the Port ${PORT}`);
+    console.log(`Server connected to http://localhost:${PORT}`);
 });
 
 // unhadle Promise rejection 

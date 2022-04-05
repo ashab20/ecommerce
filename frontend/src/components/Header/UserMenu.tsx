@@ -22,15 +22,14 @@ const UserMenu = ({HandleSearch}:any) => {
         <CgSearch className='userIcon' 
         onClick={HandleSearch }/>
         <div>
-        <span className=' absolute pl-3.5 pt-2.5 text-red-700 z-10 text-sm'>
+        <span className=' absolute pl-[.85rem] pt-2.5 text-red-700 z-10 text-sm'>
           0
         </span>
-        <BsBag className='userIcon'>
-             
-        
-        </BsBag>
+        <BsBag className='userIcon'/>
         </div>
+        <span>
         <AiFillHeart className='userIcon'/> 
+        </span>
         
         { isMobile && ( menu ? 
         <span> 

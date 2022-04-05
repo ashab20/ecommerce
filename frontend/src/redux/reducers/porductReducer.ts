@@ -14,18 +14,18 @@ const initialState = {
   products:[]
 }
 
-const productReducer = (state = initialState, action: any) => {
+const productReducer = (state = initialState as any, action: any) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
       return {
         loading: true,
-        product: [],
+        products: [],
       };
 
     case ALL_PRODUCT_SUCCESS:
       return {
         loading: false,
-        product: action.payload.products,
+        products: action.payload.products,
         productsCount: action.payload.productsCount,
       };
 

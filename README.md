@@ -10,10 +10,8 @@ _Dependancy_
 To deploy this project run
 
 ```bash
-  yarn build
-```
-_or_
-```bash
+yarn build
+# or
 nmp run build
 ```
 

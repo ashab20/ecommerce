@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import {
   ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
@@ -15,7 +15,7 @@ import {
 // axios.create({
 //     baseURL:"http://0.0.0.0:4000",withCredentials:false
 // });
-
+  
 export const getProduct = () => async (dispatch:any) => {
   try {
     dispatch({ type: ALL_PRODUCT_REQUEST });

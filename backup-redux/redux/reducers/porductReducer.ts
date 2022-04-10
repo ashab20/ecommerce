@@ -14,8 +14,8 @@ const initialState = {
   products:[]
 }
 
-const productReducer = (state = initialState as any, action: any) => {
-  switch (action.type) {
+const productReducer = (state = initialState as any, {type,payload}: any) => {
+  switch (type) {
     case ALL_PRODUCT_REQUEST:
       return {
         loading: true,
@@ -25,14 +25,14 @@ const productReducer = (state = initialState as any, action: any) => {
     case ALL_PRODUCT_SUCCESS:
       return {
         loading: false,
-        products: action.payload.products,
-        productsCount: action.payload.productsCount,
+        products: payload.products,
+        productsCount: payload.productsCount,
       };
 
     case ALL_PRODUCT_FAIL:
       return {
         loading: false,
-        error: action.payload,
+        error: payload,
       };
     case CLEAR_ERROR:
       return {

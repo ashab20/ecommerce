@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { useDispatch,useSelector } from "react-redux";
-import { getProduct} from "../../redux/actions/productAction";
+import { fetchAllProducts } from '../../store/action/productActions'
 import ProductCard from "./ProductCard";
 
 const ProductGalary = () => {
@@ -13,8 +13,8 @@ const ProductGalary = () => {
   const dispatch= useDispatch();
 
   useEffect(() => {
-    dispatch(getProduct() as any);
-  }, [dispatch]);
+    dispatch(fetchAllProducts());
+  }, []);
   
   console.log(loading,error,products,productsCount);
 if(isLoading)return <p>Loadding</p>

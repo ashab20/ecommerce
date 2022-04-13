@@ -1,15 +1,15 @@
 import Image from "next/image";
-import Return from '../../public/svg/return.svg'
-import FreeShipping from '../../public/svg/shopping.svg';
-import delivary from '../../public/svg/delivary.svg';
+import Return from '/public/svg/return.svg'
+import FreeShipping from '/public/svg/shopping.svg';
+import delivary from '/public/svg/delivary.svg';
 
 const Delivary = () => {
   return (
-    <section className='container'>
+    <section className='container mt-40'>
         <div>
             
         </div>
-        <div className='grid grid-cols-1 sm:grid-cols-3 gap-1'>
+        <div className='grid grid-cols-1 sm:grid-cols-3 gap-10'>
             <div className='bg-[#f7f7f7] p-2 rounded-sm'>
                 <Image src={Return} alt="choice" height="200px" />
                 <h4 className='text-base p-2 font-Poppins text-yellow-500 text-center'>

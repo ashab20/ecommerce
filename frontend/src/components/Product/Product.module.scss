@@ -1,0 +1,31 @@
+//?  Home Product
+.product-card {
+  @apply p-2 rounded-md transition ease-in-out delay-100 focus:-translate-y-1 hover:-translate-y-1  duration-300;
+}
+
+.reviews{
+  @apply text-base text-emerald-500 flex justify-between;
+}
+
+.price {
+  @apply text-base text-amber-700;
+}
+
+.btn-add{
+    @apply bg-red-500 p-2 m-2 text-base rounded-sm text-white font-Roboto pl-6 pr-6 hover:bg-gray-700;
+}
+
+
+// ?  product details pages
+
+.product-details {
+  @apply grid grid-cols-2  w-full h-full justify-center items-center xl:max-w-[80%] ;
+
+  .imgage {
+    @apply w-full max-h-96;
+  }
+
+  .details {
+    @apply text-gray-500 font-Courgette text-2xl;
+  }
+}

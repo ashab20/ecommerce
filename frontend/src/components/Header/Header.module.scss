@@ -1,0 +1,17 @@
+.header {
+    @apply w-full grid grid-cols-2 h-[3rem] shadow-md shadow-fuchsia-200 sm:grid-cols-[1fr_4fr_1fr] md:pl-6 md:pr-6 lg:pl-8 lg:pr-8 xl:pl-14 xl:pr-14 justify-center items-center mb-4 max-w-[2048px];
+  }
+
+  .MenuItem {
+    @apply font-Poppins pl-2 pr-2 mb-1 text-center items-center text-xl font-[400] text-gray-800 rounded-sm hover:text-gray-600  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300;
+  }
+  .userIcon {
+    @apply text-lg ml-2 mr-2 mt-2 text-gray-600 cursor-pointer;
+  }
+  .mobileLink {
+    @apply m-3 text-xl cursor-pointer border-dotted border-b-2 border-indigo-400 font-Montserrat font-[400] hover:rounded-md hover:text-gray-600 
+    transition ease-in-out delay-150 hover:-translate-y-1 duration-300 hover:border-0;
+  }
+  .socialIcon {
+    @apply mr-2.5 text-xl pb-10 cursor-pointer  font-[400];
+  }

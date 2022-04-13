@@ -8,20 +8,20 @@ import kids from '../../../public/svg/kids.svg';
 
 const BestSell = () => {
   return (
-    <section className='container'>
+    <section className='container mt-40 mb-10'>
 
       {/*? ***TITLE *** */}
-      <div className="text-center grid items-center mt-10">
-        <h2 className='font-Roboto uppercase p-1 text-gray-700 font-extrabold text-center text-4xl'>
+      <div className="text-center grid items-center mb-10">
+        <h2 className='title'>
           Best Sells
         </h2>
-        <h4 className=' p-1 text-base text-gray-500 font-Poppins mb-10'>
+        <h4 className=' subtitle'>
           Detailes of the product
         </h4>
       </div>
 
       {/* container */}
-      <div className='grid sm:grid-cols-6 grid-rows-2 items-center gap-2 text-center relative'>
+      <div className='grid sm:grid-cols-6 grid-rows-2 items-center gap-5 text-center relative'>
 
         {/* 1st card */}
         <div className='bg_card'>

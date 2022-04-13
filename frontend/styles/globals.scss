@@ -1,0 +1,51 @@
+
+@tailwind base;
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:wght@100;400&family=Poppins&family=Roboto&display=swap");
+
+@import "./base.module.scss";
+
+@tailwind components;
+
+@import "../src/components/Header/Header.module.scss";
+@import "../src/components/Product/Product.module.scss";
+@import "../src/components/BestSell/BestSell.module.scss";
+@import "../src/components/Reviews/Reviews.module.scss";
+@import "../src/components/Loading/Loading.module.scss";
+@layer components {   
+  
+  /* container */
+  .container {
+    margin:0 auto;
+    @apply w-full grid md:pl-6 md:pr-6 lg:pl-[6%] lg:pr-[6%] xl:pl-[10%] xl:pr-[10%]  max-w-[2048px]; 
+  }
+  .container-fluid{
+    @apply w-full pl-2 pr-2
+  }
+
+  .title{
+    @apply font-extralight text-2xl lg:text-4xl uppercase font-Montserrat text-gray-800;
+  }
+
+  .subtitle{
+    @apply text-gray-700 text-xl font-Roboto overflow-ellipsis;
+  }
+
+  .text{
+
+  }
+
+  .btn{
+
+  }
+ 
+  .footerLink {
+    @apply font-Poppins pt-0.5 pb-0.5 text-base font-normal text-gray-200 hover:underline;
+  }
+  /* .footerTitle{
+    @apply text-gray-300 justify-center font-Poppins font-bold text-base items-center uppercase;
+  } */
+
+  
+}
+
+@tailwind utilities;

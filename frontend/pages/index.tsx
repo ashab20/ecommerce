@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Meta from "../src/components/Meta";
 import Slider from "../src/components/Slider";
 import BestSell from '../src/components/BestSell';
-import ProductGalary from "../src/components/ProductGalary/indext";
+import ProductGalary from "../src/components/Product/HomeProduct/indext";
 import Proccess from "../src/components/Process";
 import Delivary from "../src/components/Delivary";
 

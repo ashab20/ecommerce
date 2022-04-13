@@ -1,0 +1,15 @@
+.progress{
+    @apply  w-[50%] h-8 rounded-md bg-gray-200 animate-pulse;
+    .progress-bar{
+        animation: progress 5s ease infinite;
+        @apply  w-[30%] bg-orange-500 h-8 p-2 rounded-md;
+
+        @keyframes progress {
+            0%{
+                @apply w-[20%];
+            }100%{
+                @apply w-[70%] ;
+            }
+        }
+    }
+}

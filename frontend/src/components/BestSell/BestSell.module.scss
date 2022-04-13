@@ -1,0 +1,8 @@
+ /* Best Sells */
+ .bg_card {
+    @apply col-span-4 grid grid-cols-2 bg-gradient-to-r from-red-200 via-purple-200 to-pink-200 relative h-56 rounded-md;
+  }
+
+  .sort_card {
+    @apply rounded-md col-span-2 bg-gradient-to-l from-red-200 via-purple-200 to-pink-200 h-56;
+  }

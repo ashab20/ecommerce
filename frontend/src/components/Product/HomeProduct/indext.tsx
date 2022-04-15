@@ -17,12 +17,12 @@ const HomeProduct = () => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  // console.log(products.product);
+  console.log(products);
   
 
   return (<>
   {loading ? 
-    <div className="container items-center justify-center ">
+    <div className="container items-center ">
     <Loading />
   </div>
   
@@ -43,7 +43,7 @@ const HomeProduct = () => {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 relative">
         {products &&
-          products.product.map((product:any) => (
+          products.map((product:any) => (
             <ProductCard key={product._id} product={product} />
           ))}
       </div>

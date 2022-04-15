@@ -7,13 +7,14 @@ import { clearEror, fetchProducts } from "../../src/store/action/productActions"
 import Delivary from '../../src/components/Delivary'
 import ProductReviews from '../../src/components/Reviews/ProductReviews'
 import ProductDetails from "../../src/components/Product/ProductDetails";
+import Loading from '../../src/components/Loading';
 
 
 interface rootState{
   product:any;
 }
 
-const product = () => {
+const Product = () => {
    
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const {loading , error, product} = useSelector((state: rootState) => state.product
@@ -28,21 +29,32 @@ const dispatch = useDispatch();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if(error){
-      throw new Error(error);
-      dispatch(clearEror())
+      dispatch(clearEror());
+      console.log(error);
       
     }
+   
+      dispatch(fetchProducts(Router.query.product));
     
-    dispatch(fetchProducts(Router.query.product));
-  }, [dispatch, product,error]);
-
+  }, [dispatch,error]);
 
   
+  
   return (<>
+  {loading ? 
+    <div className="container items-center ">
+    <Loading />
+  </div>
+  : <>  
     <ProductDetails product={product} loading={loading}/>
     <Delivary/>
-    <ProductReviews  product={product} loading={loading}/>
+    {loading === false ? product && 
+    <ProductReviews  reviews={product.reviews}/>
+    : (<h4> No review </h4>)
+    }
+    </>
+    }
   </>)
 }
 
-export default product
+export default Product

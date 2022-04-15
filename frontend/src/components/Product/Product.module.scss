@@ -19,7 +19,7 @@
 // ?  product details pages
 
 .product-details {
-  @apply grid grid-cols-2  w-full h-full justify-center items-center xl:max-w-[80%] ;
+  @apply grid  p-5 sm:grid-cols-2  w-full h-full justify-center items-center xl:max-w-[80%] ;
 
   .imgage {
     @apply w-full max-h-96;

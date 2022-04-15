@@ -14,8 +14,8 @@ const allProductReducer = (state = initialState, {type,payload}:any) => {
             case actions.ALL_PRODUCT_SUCCESS:
                 return {
                   loading: false,
-                  products: payload,
-                  productsCount: payload,
+                  products: payload.product,
+                  productsCount: payload.ProductCount,
                 };
           
               case actions.ALL_PRODUCT_FAIL:
@@ -44,8 +44,9 @@ const productReducer = (state = {product:{}}, {type,payload}:any) => {
                 loading:true,...state
             }
             case actions.PRODUCT_SUCCESS:
-                return {  loading: false,              
+                return {  
                   product: payload,
+                  loading: false,              
                 };
           
               case actions.PRODUCT_FAIL:

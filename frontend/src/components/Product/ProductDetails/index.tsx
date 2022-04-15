@@ -25,11 +25,7 @@ const ProductDetails = ({product,loading}:any) => {
 
   return (
     <>
-      {loading ? (
-        <div className="container items-center justify-items-center mt-10">
-          <Loading />
-        </div>
-      ) : (
+      {
         product && (
           <section className="container product-details">
             <div className="image">
@@ -65,7 +61,7 @@ const ProductDetails = ({product,loading}:any) => {
            
           </section>
         )
-      )}
+                }
     </>
   );
 };

@@ -1,9 +1,6 @@
 import ReactStars from "react-rating-stars-component";
-import Loading from "../Loading";
-import React,{useEffect} from 'react';
-import { useSelector,useDispatch } from "react-redux";
-import { fetchProducts,clearEror } from "../../store/action/productActions";
-import Router from "next/router";
+import avatar from "../../../public/avatar.svg";
+import Image from "next/image";
 
 interface rootState{
   product:any;
@@ -21,30 +18,34 @@ const ProductReviews = ({reviews}:any) => {
   //   dispatch(fetchProducts(Router.query.product));
   // }, [dispatch, product,error]);
   const stars = {
-    edit: true,
+    edit: false,
     count: 5,
     activeColor: "tomato",
     size: 24,
     isHalf: true,
-    value: reviews.rating
   };
- 
-return (      
-    <section className="container mt-32">
+ const ReviewComment = () => 
+  reviews.map((r:any) => {
+   return (      
+    <section key={r.user} className="">
         <div className=" review-group">
-            <div  className="product-reviews">            
-            <h4 className="subtitle">{reviews.name}</h4>
-            <ReactStars {...stars} />
-            <span className="text">{reviews.comment}</span>  
+          <div  className="product-reviews">  
+            <Image src={avatar} alt={r.name} width="100%" height="100%"/>          
+            <h4 className="subtitle">{r.name}</h4>
+            
+            <ReactStars  {...stars} value={r.rating}  />
+            
+            <span className="text">{r.comment}</span>  
                
           </div>
         </div>
             
     </section>);
-}
+ })
 
-ProductReviews.defaultProps = {
-  reviews: {
+
+ ReviewComment.defaultProps = {
+  r: {
     user: "User",
     comment:
       " Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur earum commodi consequatur consequuntur sapiente? Praesentium iste harum libero, dolore beatae sapiente obcaecati eligendi? Quaerat modi adipisci quibusdam sequi accusantium pariatur.",
@@ -53,5 +54,14 @@ ProductReviews.defaultProps = {
     rating: 3.4,
   },
 };
+
+return <div className="container review mt-20">
+  <h2 className="title">Reviews:</h2>
+  <ReviewComment/>
+  </div>
+
+
+}
+
 
 export default ProductReviews;

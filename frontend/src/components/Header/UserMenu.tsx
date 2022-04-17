@@ -19,7 +19,7 @@ const UserMenu = ({HandleSearch}:any) => {
     const isMobile  = useMediaQuery({maxWidth:SCREEN.sm});
   return (<>
     <div className='text-2xl h-10 flex justify-end z-20'>
-        <CgSearch className='userIcon' 
+        <CgSearch className='userIcon ' 
         onClick={HandleSearch }/>
         <div>
         <span className=' absolute pl-[.85rem] pt-2.5 text-red-700 z-10 text-sm'>

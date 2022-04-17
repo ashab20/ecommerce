@@ -16,6 +16,7 @@ const allProductReducer = (state = initialState, { type, payload }: any) => {
         loading: false,
         products: payload.product,
         productsCount: payload.ProductCount,
+        resultPerPage: payload.resultPerPage,
       };
 
     case actions.ALL_PRODUCT_FAIL:

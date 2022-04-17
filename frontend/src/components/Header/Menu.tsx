@@ -4,7 +4,7 @@ const Menu = () => {
   return (
     <ul className="flex mt-2 justify-center text-center items-center">
       <li className="MenuItem">
-        <Link href="/product">
+        <Link href="/products">
           <a>Product</a>
         </Link>
       </li>

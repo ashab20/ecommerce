@@ -1,11 +1,11 @@
 import baseLink from "../../api/baseLink";
 import { actionTypes as actions } from "../constants/action-types";
 
-export const fetchAllProducts = () => async (dispatch: any) => {
+export const fetchAllProducts = (currentPage = 1,keyword="") => async (dispatch: any) => {
 
   try {
     dispatch({ type: actions.ALL_PRODUCT_REQUEST });
-  const { data }: any = await baseLink.get(`api/products`).catch((e) => {Error:e})
+  const { data }: any = await baseLink.get(`api/products?keyword=${keyword}&page=${currentPage}`).catch((e) => {Error:e})
 
   dispatch({ type: actions.ALL_PRODUCT_SUCCESS, payload: data } as any);
   } catch (error) {

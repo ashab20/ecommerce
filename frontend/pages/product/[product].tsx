@@ -1,5 +1,5 @@
 import React from 'react'
-import Router from "next/router";
+import {useRouter} from "next/router";
 import { useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ interface rootState{
 }
 
 const Product = () => {
+  const Router = useRouter();
    
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const {loading , error, product} = useSelector((state: rootState) => state.product
@@ -36,7 +37,7 @@ const dispatch = useDispatch();
    
       dispatch(fetchProducts(Router.query.product));
     
-  }, [dispatch,error]);
+  }, [, dispatch, error,Router.query.product]);
 
   
   

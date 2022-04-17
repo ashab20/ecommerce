@@ -1,3 +1,4 @@
+import router from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../src/components/Loading";
@@ -14,9 +15,14 @@ const ProductPage = () => {
 
   const dispatch = useDispatch();
 
+  const queryLink = router.query.search as any;
+
   useEffect(() => {
+    if (queryLink) {
+      dispatch(fetchAllProducts(queryLink));
+    }
     dispatch(fetchAllProducts());
-  }, [dispatch]);
+  }, [dispatch, queryLink]);
 
   return (
     <>
@@ -28,7 +34,7 @@ const ProductPage = () => {
         <section className="container mt-10 mb-20">
           <div className="mb-12 flex-col sm:flex-wrap justify-between  relative p-2">
             <h2 className="title">Product</h2>
-            <Search searchLink={searchLink} history={history} />
+            <Search searchLink={searchLink} />
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 relative">

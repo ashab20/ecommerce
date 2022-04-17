@@ -1,0 +1,20 @@
+.pagination{
+    @apply flex justify-center items-center text-center p-5 m-2;
+
+
+    li{
+        @apply mx-1;
+    }
+    .page-item{
+        @apply border-2 rounded-sm;
+    }
+    .page-link{
+        @apply text-gray-600 p-5 ;
+    }
+    .activePage{
+        @apply bg-red-100;
+    }
+    .activePageLink{
+        @apply text-gray-600;
+    }
+}

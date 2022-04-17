@@ -1,23 +1,31 @@
-import Router from "next/router";
+import {useRouter} from "next/router";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import Loading from "../Loading";
 
-const Search = ({ searchLink, history }: any) => {
+const Search = ({ searchLink }: any) => {
   const [search, setSearch] = useState("");
+  const router = useRouter()
 
   const searchHandler = (e: any) => {
     e.preventDefault();
-    // if (search.trim()) {
-    //   Router.push({
-    //     pathname: "/product",
-    //     query: { search: `${search}` },
-    //   });
-    // } else {
-    //   Router.push({
-    //     pathname: "/product",
-    //     query: { search: `${search}` },
-    //   });
-    // }
+
+    if (router.isFallback) {
+      return <div><Loading/></div>
+    }
+
+    if (search.trim()) {
+       router.push({
+       pathname: "/products",
+       query: { keyword:search } },
+      `/products/${search}`
+    );
+    } else {
+      router.push({
+        pathname: "/products",
+        query: { keyword:"" } },        
+       `/products`
+      )}
   };
 
   return (
@@ -34,7 +42,7 @@ const Search = ({ searchLink, history }: any) => {
         onSubmit={searchHandler}
       >
         <input
-          className="text-base font-thin  outline-none p-1"
+          className="text-base font-thin w-[90%] outline-none p-1"
           type="search"
           placeholder="search..."
           onChange={(e) => setSearch(e.target.value)}
